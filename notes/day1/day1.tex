@@ -1,0 +1,80 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Latex Notes Template
+%	Zach Neveu
+%	zachary.neveu@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Geometry, font
+\documentclass[12pt, letter]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{titling}
+\setlength{\droptitle}{-5em} 
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\graphicspath{{imgs/}}
+\usepackage{hyperref}
+
+% Math stuff
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+%acronyms
+\usepackage{acronym}
+\newacro{BBB}{Beaglebone black}
+\newacro{SBC}{single board computer}
+\newacro{ADC}{analog to digital converter}
+
+
+% Code Highlighting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+
+\author{Zach Neveu}
+\title{ Intro }
+
+\begin{document}
+\maketitle
+\subsection*{Intro}
+\begin{itemize}
+	\item Platform: \ac{BBB} w/ audio hat
+	\item Start in PD, delve into C++ eventually, even a little assembly!
+	\item Introduce some hardware components as well - pots, caps, etc.
+	\item Project: design an audio interactive app
+	\item No tests, grade based on participation, assignments, and final project proposal/demo
+	\item Make sure to cite any example code used, and describe what our personal contribution is
+	\item Don't skip more than 2 classes or grade drop
+\end{itemize}
+
+\subsection*{Embedded Systems}
+\begin{itemize}
+	\item Really good at some tasks, less good at others
+	\item Going to focus on \acp{SBC}
+	\item Most \acp{SBC} have an audio interface
+	\item Benefits to \ac{SBC}
+	\begin{itemize}
+		\item Less processes competing for resources/fewer interrupts
+		\item Can guarantee realtime requirements (if using realtime OS)
+		\item Lower latency because smaller buffer possible
+	\end{itemize}
+\end{itemize}
+
+\subsection*{Latency}
+\begin{itemize}
+	\item Audio Latency: buffer size in samples
+	\item Control Latency: latency of input plus audio latency
+	\item Controls typically parsed in a loop with fixed frequency
+	\item Adds additional latency that is variable...
+	\item Control parsing and audio buffer not necessarily integer multiples
+	\item Must wait for both to complete to get signal through, so quite variable latency
+	\item Variable latency $\to$ jitter (super annoying)
+	\item USB period parsing ~5 ms (pretty big)
+	\item Problem: timbre strongly effected by jitter even < 1ms
+	\item \ac{SBC} can remove all jitter! \ac{ADC} runs way closer to audio sample rate.
+	\item Bela w/ buffer size of 16 - fixed control latency of 0.35ms
+	\item MIDI latency much worse - $2.85\pm 2.5ms$
+\end{itemize}
+
+\end{document}
