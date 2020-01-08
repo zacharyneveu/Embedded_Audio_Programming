@@ -1,0 +1,52 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Latex Notes Template
+%	Zach Neveu
+%	zachary.neveu@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Geometry, font
+\documentclass[12pt, letter]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{titling}
+\setlength{\droptitle}{-5em} 
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\graphicspath{{imgs/}}
+\usepackage{hyperref}
+
+% Math stuff
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+%acronyms
+\usepackage{acronym}
+
+
+% Code Highlighting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+
+\author{Zach Neveu}
+\title{ Hardware Details }
+
+\begin{document}
+\maketitle
+
+\subsection*{Operating System(s)}
+Note: I'm comfortable using either OS but prefer Linux when possible
+\begin{itemize}
+	\item Elementary OS Hera 5.1 (Ubuntu 18.0.4 LTS)
+	\item Windows 10 Insider build
+\end{itemize}
+
+\subsection*{MIDI Controllers}
+\begin{itemize}
+	\item Roland DJ202 (DJ controller, jog wheels, pots, buttons etc.)
+	\item Alesis Q25 (simple keyboard, 25 keys, mod/pitch wheels)
+	\item Akai APC20 (layout made for Ableton control)
+\end{itemize}
+
+\end{document}
