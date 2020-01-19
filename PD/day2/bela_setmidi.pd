@@ -1,0 +1,6 @@
+#N canvas 0 22 450 300 10;
+#X obj 71 43 loadbang;
+#X msg 71 69 hw 0 0 0;
+#X obj 71 96 send bela_setMidi;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;

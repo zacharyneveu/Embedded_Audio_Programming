@@ -1,0 +1,48 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Latex Notes Template
+%	Zach Neveu
+%	zachary.neveu@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Geometry, font
+\documentclass[12pt, letter]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{titling}
+\setlength{\droptitle}{-5em} 
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\graphicspath{{imgs/}}
+\usepackage{hyperref}
+
+% Math stuff
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+%acronyms
+\usepackage{acronym}
+
+
+% Code Highlighting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+
+\author{Zach Neveu}
+\title{ Day 2 }
+
+\begin{document}
+\maketitle
+
+\subsection*{Review}
+\begin{itemize}
+	\item 3 reasons SBCs superior for audio processing
+	\begin{itemize}
+		\item Lower control latency
+		\item No jitter in control latency
+		\item Fewer background processes/better real time guarantees $\to$ smaller buffers possible
+	\end{itemize}
+\end{itemize}
+
+\end{document}

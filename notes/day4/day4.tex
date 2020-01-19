@@ -1,0 +1,66 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Latex Notes Template
+%	Zach Neveu
+%	zachary.neveu@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Geometry, font
+\documentclass[12pt, letter]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{titling}
+\setlength{\droptitle}{-5em} 
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\graphicspath{{imgs/}}
+\usepackage{hyperref}
+
+% Math stuff
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+%acronyms
+\usepackage{acronym}
+
+
+% Code Highlighting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+
+\author{Zach Neveu}
+\title{ Day 4 notes }
+
+\begin{document}
+\maketitle
+
+\subsection*{MIDI stuff}
+\begin{itemize}
+	\item PC can work as midi sink or source
+	\item Bela can also be both
+	\item Can use Bela like a PC with a MIDI controller
+	\item Can also use Bela as a synth, and use PC as midi controller!
+	\item See PD sketch for how to do this
+\end{itemize}
+
+\subsection*{Goal: Send MIDI from computer to Bela}
+\begin{itemize}
+	\item Can do this with \texttt{fake\_midi\_controller.pd} patch
+\end{itemize}
+
+\subsection*{Sampling}
+\begin{itemize}
+	\item Use \texttt{soundfiler} object in PD
+	\item Write sound to table
+\end{itemize}
+
+\subsection*{OSC}
+\begin{itemize}
+	\item Send messages over internet/IP protocol
+	\item \texttt{oscformat}, \texttt{oscsend}, and \texttt{oscreceive} objects handle messages
+	\item More flexible than midi: describe what's in the message with a name in key-value format
+	\item Can control Bela with OSC
+\end{itemize}
+
+\end{document}
