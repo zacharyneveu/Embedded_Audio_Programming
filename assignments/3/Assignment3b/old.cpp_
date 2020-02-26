@@ -1,0 +1,118 @@
+/*
+*	second order IIR filter:
+*	y[n] = b0*x[n] + b1*x[n-1] + b2*x[n-2] + a1*y[n-1] + a2*y[n-2]
+*
+*	used twice in cascade (2 stage filtering)
+*
+*	with automatic low-pass coefficient calculation
+*	frequency modulation and Q linear automation
+*	applied to audio file
+*/
+
+#include <Bela.h>
+#include <cmath> // for pow()
+#include <cstdlib> // for RAND_MAX
+#include "libraries/Oscillator/Oscillator.h"
+// include FilePlayer class
+#include ...
+
+// coefficients, which will be calculated at each render iteration
+float a1 = 0, a2 = 0;
+float b0 = 0, b1 = 0, b2 = 0;
+// previous inputs and ouputs for the two stages
+float x_n_1[2];
+float x_n_2[2];
+float y_n_1[2];
+float y_n_2[2];
+// or you can use this compact 2D array representation
+//float lastX[2][2] = {{0}}; // lastX[0][STAGE_ID] = x_n_1[STAGE_ID] and lastX[1][STAGE_NUM] = x_n_2[STAGE_NUM] 
+//float lastY[2][2] = {{0}}; // lastY[0][STAGE_ID] = y_n_1[STAGE_ID] and lastY[1][STAGE_NUM] = y_n_2[STAGE_NUM] 
+
+// ramp, for linear automation
+Oscillator ramp;
+float rampRate; // to be determined as per specifications
+
+// declare oscillator for lfo
+//...
+
+float amp = 0.6; // if too soft, increase, but be careful! only when everything is working, set to 1
+
+
+// calculate filter coefficients given specifications
+void calculate_coefficients(float sampleRate, float frequency, float Q)
+{
+	float w = M_2_PI*frequency;
+	float T = 1 / 
+}
+
+
+bool setup(BelaContext *context, void *userData)
+{
+
+	// load samples from file into file player
+	//...
+
+	// prepare lfo 
+	//... 
+	
+	// prepare ramp
+	ramp.setup(rampRate, context->audioSampleRate, Oscillator::sawtooth, M_PI); // ramp needs additional parameter -> starting phase = M_PI
+	
+	return true;
+}
+
+void render(BelaContext *context, void *userData)
+{
+	float in; // same as x_n[0], input for first stage
+	float intermediate; // same as y_n[0]=x_n[1], output of first stage and input for the second one
+	float out; // same as y_n[1], output of second stage
+	
+	// helper variable
+	float rampSample;
+	
+	float outFrame[2]; 
+
+    for(unsigned int n = 0; n < context->audioFrames; n++) {
+		// little gift, code to get ramp sample:
+		rampSample = ramp.process()/2; // ramp goes between 2 and 0, so needs to be noramlized...
+		rampSample = 1-rampSample; //...and reversed, as it starts from 2 and goes down to 0 
+		// now ramp goes from 0 to 1, according to the rate specified in setup()
+		
+		// get lfo sample
+		//...
+		
+		// use ramp and lfo samples to work out Q automation and frequency modulation
+		// ...
+		
+		// update filter coefficients
+		//...
+    	
+    
+    	// read the next file sample
+		//in = ...
+		
+        // implement stage 1, saving its output in "intermediate"
+        //intermediate = ...
+        // update previous inputs and outputs for stage 1
+        //...
+        
+        // implement stage 2, using "intermediate" as input
+        //out = ...
+        // update previous inputs and outputs for stage 2
+        //...
+
+
+        // send output (stage 2 ouput) and intermediate (stage 1 output) samples to left and right channels, as per specifications
+        //outFrame[0] = ...
+        //outFrame[1] = ...
+            
+        // write the outputs to the audio channels
+		audioWrite(context, n, 0, outFrame[0]);
+		audioWrite(context, n, 1, outFrame[1]);
+    }
+}
+
+void cleanup(BelaContext *context, void *userData)
+{
+
+}

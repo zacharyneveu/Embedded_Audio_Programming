@@ -1,0 +1,35 @@
+#N canvas 960 63 960 994 12;
+#X obj 613 168 loadbang;
+#X msg 613 197 read -resize brir.wav ir;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array ir 100 float 3 black black;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 100 -1 200 140 1;
+#X restore 616 310 graph;
+#X obj 613 226 soundfiler;
+#X obj 613 255 s nsamps_ir;
+#X obj 207 162 loadbang;
+#X obj 207 220 soundfiler;
+#X obj 207 249 s nsamps_source;
+#X msg 207 191 read -resize audio/raver.wav source;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array source 100 float 3 black black;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 100 -1 200 140 1;
+#X restore 205 299 graph;
+#X obj 418 536 r nsamps_source;
+#X obj 570 539 r nsamps_ir;
+#X obj 418 565 min;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 5 0 8 0;
+#X connect 6 0 7 0;
+#X connect 8 0 6 0;
+#X connect 10 0 12 0;

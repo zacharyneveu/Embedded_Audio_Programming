@@ -274,3 +274,9 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+*.zip
+
+*.wav
+
+**/__MACOSX/*
